@@ -407,7 +407,7 @@ class ItemsController < ApplicationController
       if tuser.new_record? # 新規作成の場合は保存
         tuser = User.create(email: user, password: password)
       end
-      tuser = Account.find_or_create_by(user: user)
+      tuser = Account.find_or_create_by(email: user)
       #tuser.update(user_level: ulevel)
       logger.debug("====== Regist from Form End =======")
     end
