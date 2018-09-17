@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'items', to: 'items#get'
   post 'items/get'
 
+  post 'items/regist'
+
   #post 'items/upload', to: 'items#get'
   post 'items/upload'
 
