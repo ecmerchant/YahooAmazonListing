@@ -174,7 +174,7 @@ class ItemsController < ApplicationController
                 k += 1
               end
             end
-
+            title = title.gsub("\t", "")
             res[i] = [url,title,auctionID,listPrice,binPrice,condition,bitnum,restTime,image[0],image[1],image[2]]
 
             process += 1
