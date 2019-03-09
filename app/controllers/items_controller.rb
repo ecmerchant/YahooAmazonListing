@@ -148,7 +148,11 @@ class ItemsController < ApplicationController
                   listPrice = doc.xpath('//p[@class="decTxtAucPrice Price__value"]')[0].text
                 end
                 listPrice = CCur(listPrice)
-
+                if listPrice != nil then
+                  if listPrice.include?("%") then
+                    listPrice = /^([\s\S]*?)\s/.match(listPrice)[1]
+                  end
+                end 
                 binPrice = 0
                 bitnum = doc.xpath('//b[@property="auction:Bids"]')[0]
                 if bitnum != nil then
@@ -182,9 +186,7 @@ class ItemsController < ApplicationController
               end
             end
             title = title.gsub("\t", "")
-            if listPrice.include?("%") then
-              listPrice = /^([\s\S]*?)\s/.match(listPrice)[1]
-            end
+
             res[i] = [url,title,auctionID,listPrice,binPrice,condition,bitnum,restTime,image[0],image[1],image[2]]
 
             process += 1
